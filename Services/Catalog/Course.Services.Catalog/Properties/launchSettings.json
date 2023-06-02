@@ -9,7 +9,7 @@
     }
   },
   "profiles": {
-    "Course.Services.Catalog": {
+    "CourseServices.Catalog": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": false,
