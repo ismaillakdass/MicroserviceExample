@@ -37,9 +37,7 @@ namespace CourseServices.Catalog.Controllers
         {
             var response = await _categoryService.CreateAsync(categoryDto);
             return CreateActionResultInstance(response);
-        }
-
-        [HttpPut]
+        }       
        
     }
 }
