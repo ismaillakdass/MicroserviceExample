@@ -8,12 +8,12 @@ namespace CourseServices.Catalog.Mapping
     {
         public GeneralMapping()
         {
-            CreateMap<Course,CourseDto>().ReverseMap();
+            CreateMap<Courses,CourseDto>().ReverseMap();
             CreateMap<Category,CategoryDto>().ReverseMap();
             CreateMap<Feature, FeatureDto>().ReverseMap();
 
-            CreateMap<Course, CourseCreateDto>().ReverseMap();
-            CreateMap<Course, CourseUpdateDto>().ReverseMap();
+            CreateMap<Courses, CourseCreateDto>().ReverseMap();
+            CreateMap<Courses, CourseUpdateDto>().ReverseMap();
 
 
         }
