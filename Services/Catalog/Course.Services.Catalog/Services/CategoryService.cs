@@ -17,13 +17,19 @@ namespace CourseServices.Catalog.Services
             var client = new MongoClient(databaseSettings.ConnectionString);
             var database = client.GetDatabase(databaseSettings.DatabaseName);
 
-            _categoryCollection = database.GetCollection<Category>(databaseSettings.CourseCollectionName);
+            _categoryCollection = database.GetCollection<Category>(databaseSettings.CategoryCollectionName);
             _mapper = mapper;
         }
 
         public async Task<Response<List<CategoryDto>>> GetAllAsync()
         {
-            var categories = _categoryCollection.Find(x => true);
+            var categories = await _categoryCollection.Find(x => true).ToListAsync();
+
+            if (!categories.Any())          
+            {
+                categories = new List<Category>();
+            }
+
             return Response<List<CategoryDto>>.Success(_mapper.Map<List<CategoryDto>>(categories),200);
 
         }

@@ -16,8 +16,12 @@ builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<ICoursesService, CoursesService>();
 
 builder.Services.AddAutoMapper(typeof(Program).Assembly);
-builder.Configuration.GetSection("DatabaseSettings").Get<DatabaseSettings>();
+//builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
+
+builder.Services.Configure<DatabaseSettings>(builder.Configuration.GetSection("DatabaseSettings"));
+//builder.Services.AddSingleton<DatabaseSettings>();
+//builder.Configuration.GetSection("DatabaseSettings").Get<DatabaseSettings>();
 builder.Services.AddSingleton<IDatabaseSettings>(sp =>
 {
     return sp.GetRequiredService<IOptions<DatabaseSettings>>().Value;
@@ -36,6 +40,13 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+
+app.UseHttpsRedirection();
+
+app.UseAuthorization();
+
+app.MapControllers();
 
 app.Run();
 
